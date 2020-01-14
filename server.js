@@ -11,7 +11,9 @@ const pubsub = new PubSub();
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: ({req}) => ({req, pubsub})
+    context: ({req}) => ({req, pubsub}),
+    introspection: true,
+  playground: true,
 })
 
 mongoose.connect(MONGODB, {
@@ -19,7 +21,7 @@ mongoose.connect(MONGODB, {
     useUnifiedTopology: true
 }).then(() => {
     console.log('Connected to MONGODB')
-    return server.listen({port: 5000})
+    return server.listen({port: process.env.PORT || 5000})
 }).then((res) => {
     console.log(`Server running at ${res.url}`)
 })
