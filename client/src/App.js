@@ -10,9 +10,13 @@ import Register from "./components/pages/Register";
 import MenuBar from "./components/Menubar";
 
 import { Container } from 'semantic-ui-react'
+import { AuthProvider } from "./context/auth";
+
+
 
 function App() {
   return (
+    <AuthProvider>
     <Router>
       <Container>
       <MenuBar />
@@ -21,6 +25,7 @@ function App() {
       <Route exact path='/register' component={Register} />
       </Container>
     </Router>
+    </AuthProvider>
   );
 }
 
